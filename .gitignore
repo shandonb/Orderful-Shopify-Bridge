@@ -1,0 +1,8 @@
+# Generated directories
+node_modules/
+
+# Sensitive information (API keys business IDs etc)
+app.yaml
+filter-orders.js
+get-isa.js
+get-location-ids.js

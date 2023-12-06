@@ -1,0 +1,20 @@
+# Example app.yaml file, based on the one I use
+
+runtime: nodejs20
+instance_class: F1
+
+env_variables:
+  SHOPIFY_URL: 'example-store.myshopify.com'
+  APP_URL: 'https://example-endpoint.com/webhook/orders/create'
+  ACCESS_TOKEN: 'accessToken'
+  API_KEY: 'APIKey'
+  SECRET_KEY: 'APISecretKey'
+  ORDERFUL_KEY: 'OrderfulAPIKey'
+  STORE_ISA: 'YOURISAID' #Make sure to replace with your actual ISA ID or the Orderful integration will fail
+
+automatic_scaling:
+  max_instances: 1
+
+handlers:
+- url: /.*
+  script: auto
