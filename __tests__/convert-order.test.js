@@ -4,7 +4,7 @@ const referenceOutput = require('./referenceOutput.json');
 beforeAll(() => {
     process.env.STORE_ISA = "INSPIREME";
 
-})
+});
 
 test('Test conversion to X12-like JSON', async () => {
     const convertToX12 = require('../app_modules/convert-order.js');
