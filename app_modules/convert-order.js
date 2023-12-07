@@ -1,5 +1,4 @@
 const productLoopConstructor = require('./product-loop.js');
-const postToOrderful = require('./post-order.js');
 const getIsaId = require('./get-isa.js');
 const STORE_ISA = process.env.STORE_ISA;
 
@@ -82,8 +81,8 @@ const convertToX12 = async (orderData, vendor) => {
       }],
     },
   };
-  console.log('Trying to post to Orderful');
-  await postToOrderful(finalJson);
+  return finalJson;
+
 };
 
 module.exports = convertToX12;

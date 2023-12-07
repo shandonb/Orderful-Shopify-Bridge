@@ -1,0 +1,68 @@
+{
+    "sender": { "isaId": "INSPIREME" },
+    "receiver": { "isaId": "ODFLVENKY" },
+    "type": { "name": "850_PURCHASE_ORDER" },
+    "stream": "TEST",
+    "message": {
+        "transactionSets": [{
+            "transactionSetHeader": [{ "transactionSetIdentifierCode": "850" }],
+            "beginningSegmentForPurchaseOrder": [{
+                "transactionSetPurposeCode": "00",
+                "purchaseOrderTypeCode": "DS",
+                "purchaseOrderNumber": "PO123456789",
+                "releaseNumber": "IMHD-000000",
+                "date": "20231207"
+            }],
+            "currency": [{
+                "entityIdentifierCode": "BY",
+                "currencyCode": "USD"
+            }],
+            "N1_loop": [{
+                "partyIdentification": [{
+                    "entityIdentifierCode": "ST",
+                    "name": "John Doe"
+                }],
+                "partyLocation": [{
+                    "addressInformation": "123 Example Ave",
+                    "addressInformation1": ""
+                }],
+                "geographicLocation": [{
+                    "cityName": "Anytown",
+                    "stateOrProvinceCode": "MA",
+                    "postalCode": "00000",
+                    "countryCode": "US"
+                }]
+            }],
+            "PO1_loop":[{                  
+                "baselineItemData": [{
+                    "quantity": "1",
+                    "unitOrBasisForMeasurementCode": "EA",
+                    "unitPrice": "44.99",
+                    "basisOfUnitPriceCode": "CP",
+                    "productServiceIDQualifier": "UP",
+                    "productServiceID":"",
+                    "productServiceIDQualifier1": "VN",
+                    "productServiceID1": "95689",
+                    "productServiceIDQualifier2": "IN",
+                    "productServiceID2": "41243442741439"
+                }],                  
+                "PID_loop": [{                      
+                    "productItemDescription": [{
+                        "itemDescriptionTypeCode": "F",
+                        "productProcessCharacteristicCode": "08",
+                        "description": "Ripple Edge Paper Towel Holder with Marble Base (2 Colors) - Silver"
+                    }]
+                }]
+            }],
+            "CTT_loop": [{
+                "transactionTotals": [{
+                    "numberOfLineItems": "1"
+                }]
+            }],
+            "transactionSetTrailer": [{
+                "numberOfIncludedSegments":"",
+                "transactionSetControlNumber": ""
+            }]
+        }]
+    }
+}
