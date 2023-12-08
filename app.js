@@ -3,8 +3,8 @@
 const express = require('express');
 const crypto = require('crypto');
 const bodyParser = require('body-parser');
-const retrieveOrder = require('app_modules/retrieve-order');
-const categorizeResponse = require('app_modules/cat-res.js');
+const retrieveOrder = require('./app_modules/retrieve-order');
+const categorizeResponse = require('./app_modules/cat-res.js');
 
 const app = express();
 const SHARED_SECRET = process.env.SECRET_KEY;
