@@ -1,6 +1,6 @@
 {
-    "sender": { "isaId": "INSPIREME" },
-    "receiver": { "isaId": "ODFLVENKY" },
+    "sender": { "isaId": "testISA" },
+    "receiver": { "isaId": "testReceiver" },
     "type": { "name": "850_PURCHASE_ORDER" },
     "stream": "TEST",
     "message": {
@@ -40,7 +40,7 @@
                     "unitPrice": "44.99",
                     "basisOfUnitPriceCode": "CP",
                     "productServiceIDQualifier": "UP",
-                    "productServiceID":"",
+                    "productServiceID":"012345678901",
                     "productServiceIDQualifier1": "VN",
                     "productServiceID1": "95689",
                     "productServiceIDQualifier2": "IN",
