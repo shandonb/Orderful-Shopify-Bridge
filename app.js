@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// DotEnv for using local environment variables prior to deployment
+// require('dotenv').config();
 
 const express = require('express');
 const crypto = require('crypto');
