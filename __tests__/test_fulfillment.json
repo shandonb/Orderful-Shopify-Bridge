@@ -1,0 +1,240 @@
+{
+  "fulfillment_orders": [
+    {
+      "id": 6523447410879,
+      "shop_id": 20099037,
+      "order_id": 5445648580799,
+      "assigned_location_id": 52827455651,
+      "request_status": "unsubmitted",
+      "status": "open",
+      "supported_actions": ["create_fulfillment", "hold"],
+      "destination": {
+        "id": 6219432984767,
+        "address1": "3103 North Ridge cove",
+        "address2": "",
+        "city": "White Hall",
+        "company": "",
+        "country": "United States",
+        "email": "clsutliff@yahoo.com",
+        "first_name": "Cindy",
+        "last_name": "Sutliff",
+        "phone": "870-540-6514",
+        "province": "Arkansas",
+        "zip": "71602"
+      },
+      "line_items": [
+        {
+          "id": 13145010340031,
+          "shop_id": 20099037,
+          "fulfillment_order_id": 6523447410879,
+          "quantity": 1,
+          "line_item_id": 12988707537087,
+          "inventory_item_id": 43129202933951,
+          "fulfillable_quantity": 1,
+          "variant_id": 41031393738943
+        }
+      ],
+      "international_duties": null,
+      "fulfill_at": "2024-01-14T15:00:00-05:00",
+      "fulfill_by": null,
+      "fulfillment_holds": [],
+      "created_at": "2024-01-14T15:17:44-05:00",
+      "updated_at": "2024-01-14T15:17:44-05:00",
+      "delivery_method": {
+        "id": 880459251903,
+        "method_type": "shipping",
+        "min_delivery_date_time": null,
+        "max_delivery_date_time": null
+      },
+      "assigned_location": {
+        "address1": "2640 Northridge Drive Northwest",
+        "address2": "",
+        "city": "Grand Rapids",
+        "country_code": "US",
+        "location_id": 52827455651,
+        "name": "Grand Rapids",
+        "phone": "+16162629966",
+        "province": "Michigan",
+        "zip": "49544"
+      },
+      "merchant_requests": []
+    },
+    {
+      "id": 6523447443647,
+      "shop_id": 20099037,
+      "order_id": 5445648580799,
+      "assigned_location_id": 52827455651,
+      "request_status": "unsubmitted",
+      "status": "open",
+      "supported_actions": ["create_fulfillment", "move", "hold"],
+      "destination": {
+        "id": 6219433017535,
+        "address1": "3103 North Ridge cove",
+        "address2": "",
+        "city": "White Hall",
+        "company": "",
+        "country": "United States",
+        "email": "clsutliff@yahoo.com",
+        "first_name": "Cindy",
+        "last_name": "Sutliff",
+        "phone": "870-540-6514",
+        "province": "Arkansas",
+        "zip": "71602"
+      },
+      "line_items": [
+        {
+          "id": 13145010372799,
+          "shop_id": 20099037,
+          "fulfillment_order_id": 6523447443647,
+          "quantity": 1,
+          "line_item_id": 12988707438783,
+          "inventory_item_id": 44574462640319,
+          "fulfillable_quantity": 1,
+          "variant_id": 42467872473279
+        }
+      ],
+      "international_duties": null,
+      "fulfill_at": "2024-01-14T15:00:00-05:00",
+      "fulfill_by": null,
+      "fulfillment_holds": [],
+      "created_at": "2024-01-14T15:17:44-05:00",
+      "updated_at": "2024-01-14T15:17:44-05:00",
+      "delivery_method": {
+        "id": 880459284671,
+        "method_type": "none",
+        "min_delivery_date_time": null,
+        "max_delivery_date_time": null
+      },
+      "assigned_location": {
+        "address1": "2640 Northridge Drive Northwest",
+        "address2": "",
+        "city": "Grand Rapids",
+        "country_code": "US",
+        "location_id": 52827455651,
+        "name": "Grand Rapids",
+        "phone": "+16162629966",
+        "province": "Michigan",
+        "zip": "49544"
+      },
+      "merchant_requests": []
+    },
+    {
+      "id": 6523447476415,
+      "shop_id": 20099037,
+      "order_id": 5445648580799,
+      "assigned_location_id": 68143972543,
+      "request_status": "unsubmitted",
+      "status": "open",
+      "supported_actions": ["create_fulfillment", "hold"],
+      "destination": {
+        "id": 6219433050303,
+        "address1": "3103 North Ridge cove",
+        "address2": "",
+        "city": "White Hall",
+        "company": "",
+        "country": "United States",
+        "email": "clsutliff@yahoo.com",
+        "first_name": "Cindy",
+        "last_name": "Sutliff",
+        "phone": "870-540-6514",
+        "province": "Arkansas",
+        "zip": "71602"
+      },
+      "line_items": [
+        {
+          "id": 13145010405567,
+          "shop_id": 20099037,
+          "fulfillment_order_id": 6523447476415,
+          "quantity": 1,
+          "line_item_id": 12988707471551,
+          "inventory_item_id": 38867547619491,
+          "fulfillable_quantity": 1,
+          "variant_id": 36744612413603
+        }
+      ],
+      "international_duties": null,
+      "fulfill_at": "2024-01-14T15:00:00-05:00",
+      "fulfill_by": null,
+      "fulfillment_holds": [],
+      "created_at": "2024-01-14T15:17:44-05:00",
+      "updated_at": "2024-01-14T15:17:44-05:00",
+      "delivery_method": {
+        "id": 880459317439,
+        "method_type": "shipping",
+        "min_delivery_date_time": null,
+        "max_delivery_date_time": null
+      },
+      "assigned_location": {
+        "address1": "20 Bond Street",
+        "address2": "",
+        "city": "Central Valley",
+        "country_code": "US",
+        "location_id": 68143972543,
+        "name": "Godinger",
+        "phone": "",
+        "province": "New York",
+        "zip": "10917"
+      },
+      "merchant_requests": []
+    },
+    {
+      "id": 6523447509183,
+      "shop_id": 20099037,
+      "order_id": 5445648580799,
+      "assigned_location_id": 68144005311,
+      "request_status": "unsubmitted",
+      "status": "open",
+      "supported_actions": ["create_fulfillment", "hold"],
+      "destination": {
+        "id": 6219433083071,
+        "address1": "3103 North Ridge cove",
+        "address2": "",
+        "city": "White Hall",
+        "company": "",
+        "country": "United States",
+        "email": "clsutliff@yahoo.com",
+        "first_name": "Cindy",
+        "last_name": "Sutliff",
+        "phone": "870-540-6514",
+        "province": "Arkansas",
+        "zip": "71602"
+      },
+      "line_items": [
+        {
+          "id": 13145010438335,
+          "shop_id": 20099037,
+          "fulfillment_order_id": 6523447509183,
+          "quantity": 1,
+          "line_item_id": 12988707504319,
+          "inventory_item_id": 43018076684479,
+          "fulfillable_quantity": 1,
+          "variant_id": 40921110872255
+        }
+      ],
+      "international_duties": null,
+      "fulfill_at": "2024-01-14T15:00:00-05:00",
+      "fulfill_by": null,
+      "fulfillment_holds": [],
+      "created_at": "2024-01-14T15:17:44-05:00",
+      "updated_at": "2024-01-14T15:17:44-05:00",
+      "delivery_method": {
+        "id": 880459350207,
+        "method_type": "shipping",
+        "min_delivery_date_time": null,
+        "max_delivery_date_time": null
+      },
+      "assigned_location": {
+        "address1": "126 East Dickerson Street",
+        "address2": "",
+        "city": "Dover",
+        "country_code": "US",
+        "location_id": 68144005311,
+        "name": "Classic Touch",
+        "phone": "",
+        "province": "New Jersey",
+        "zip": "07801"
+      },
+      "merchant_requests": []
+    }
+  ]
+}

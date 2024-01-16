@@ -55,12 +55,12 @@ app.post('/webhook/orders/create', async (req, res) => {
 app.post('/webhook/orderful' ,async (req, res) => {
   const orderfulResponse = req.body;
 
+  res.status(200).send('Webhook received');
+  console.log('Received Data:', req.body);
   try {
     await categorizeResponse(orderfulResponse);
-    res.status(200).send('Webhook processed');
   } catch (error) {
     console.error('Error categorizing Orderful response: ', error);
-    res.status(500).send('Error processing webhook')
   }
 });
 

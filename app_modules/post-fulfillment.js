@@ -5,8 +5,8 @@ const SHOPIFY_URL = process.env.SHOPIFY_URL;
 
 // Find fulfillment order ID by passed order ID
 const fulfillmentOrders = async (shippingNotice) => {
-    console.log(shippingNotice);
     const orderId = shippingNotice.message.transactionSets[0].HL_loop[1].purchaseOrderReference[0].purchaseOrderNumber;
+    console.log('Purchase order: ', orderId);
     try {
         const response = await axios.get(`https://${SHOPIFY_URL}/admin/api/2023-04/orders/${orderId}/fulfillment_orders.json`, {
             headers: {
@@ -27,7 +27,11 @@ async function postFulfillment(order) {
         const fulfillment = await axios.post(`https://shop-inspire-me-home-decor.myshopify.com/admin/api/2023-04/fulfillments.json`,
         {
             'fulfillment': {
-                'fulfillment_order_id': order.fulfillment_order_id,
+                'line_items_by_fulfillment_order': [
+                {
+                    'fulfillment_order_id': order.fulfillment_order_id
+                }],
+                'location_id': order.location_id,
                 'tracking_info': {
                     'number': order.tracking_number
                 },
@@ -43,7 +47,16 @@ async function postFulfillment(order) {
         console.log('Shopify response: ', fulfillment.data);
 
     } catch (error) {
-        console.error('Error posting fulfillment to Shopify: ', error);
+        if (error.response) {
+            console.error('Error data:', error.response.data);
+            console.error('Error status:', error.response.status);
+            console.error('Error headers:', error.response.headers);
+        } else if(error.request) {
+            console.error('Error request:', error.request);
+        } else {
+            console.error('Error Message:', error.message);
+        }
+        console.error('Error config', error.config);
     }
 }
 
@@ -51,21 +64,26 @@ async function postFulfillment(order) {
 async function matchOrder(orderfulResponse, vendor) {   
     // TODO: Adjust the function to be iterative on the off chance someone tries to send multiple shipments in a single document
     const locationID = getLocationId(vendor);
+    const orderIDNumber = orderfulResponse.message.transactionSets[0].HL_loop[1].purchaseOrderReference[0].purchaseOrderNumber;
+    console.log('Location ID: ', locationID);
     const fulfillments = await fulfillmentOrders(orderfulResponse);
 
     let matchedFulfillmentOrder = null;
     for (const fulfillmentOrder of fulfillments) {
-        if (fulfillmentOrder.assigned_location_id === locationID) {
-            matchedFulfillmentOrder = fulfillmentOrder.id;
+        if (fulfillmentOrder.assigned_location_id == locationID) {
+            matchedFulfillmentOrder = fulfillmentOrder;
+            console.log('Matched fulfillment order');
             break;
         }
     }
 
     if (matchedFulfillmentOrder) {
-        console.log('Sending Fulfillment Order ID: ', matchedFulfillmentOrder);
+        console.log('Sending Fulfillment Order ID: ', matchedFulfillmentOrder.id);
         const order = {
-            'fulfillment_order_id': matchedFulfillmentOrder,
-            'tracking_number': orderfulResponse.message.transactionSets[0].HL_loop[0].referenceInformation[0].referenceIdentification
+            'fulfillment_order_id': matchedFulfillmentOrder.id,
+            'tracking_number': orderfulResponse.message.transactionSets[0].HL_loop[0].referenceInformation[0].referenceIdentification.toString(),
+            'order_id': orderIDNumber,
+            'location_id': locationID
         };
         await postFulfillment(order);
     } else {
