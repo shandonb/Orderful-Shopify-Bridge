@@ -2,16 +2,18 @@
 
 A simple, NodeJS-based, app to connect a Shopify store to Orderful's EDI environment. This app, with minimal configuration, is designed to be a "set it and forget it" solution to ensure that Shopify orders are sent to the correct third party vendors/trading partners as X12 **850 Purchase Order** documents, and that shipping information sent as **856 Advanced Shipping Notice** and inventory feeds sent as **846 Inventory Inquiry/Advice** documents are received correctly and update the order status and/or inventory levels accordingly. The current setup is based on the specific EDI guidelines for the business it was developed for, but can be easily adjusted to suit your guidelines and data structure. Documentation is present throughout for modules and code blocks whose purpose or structure may be a little less than obvious.
 
+## Disclaimer ##
+This app operates on a "minimum required data" philosophy. If your integration requires more specific data in any documents, you should be sure to add the fields into the relevant document conversion modules.
+
+
 ----------
 
 ## Initial Setup ##
 While the app as a whole should function right out of the box (designed to be deployed on Google Cloud App Engine), there is a little bit of preliminary setup that is required before the app can be deployed. First and foremost, any files that have " **-example** " appended to the file name require business-specific values to be entered to function correctly, and should have the " **-example** " removed from their file name before deploying.
 
 - **app-example.yaml:** This file should have the environment variables replaced with the appropriate values for your specific deployment. This includes Shopify and Orderful API keys, the store URL, the business' ISA ID (as assigned in Orderful), and the URL for the HTTP endpoint.
-- **filter-orders-example.js:** This module serves to separate orders into individual **850 Purchase Order** documents based on the assigned item vendor. If your dropship items are designated using different methods, such as metafields, this file will need some pretty heavy customization. It includes an optional search parameter for assigned fulfillment locations in case some items that would usually be fulfilled by an outside vendor should not be, on a per-order basis. For normal use, the `vendors` array should be populated with a comma-separated list of strings with the vendor name as listed in Shopify. The `thirdPartyWarehouseLocationId` variable should be assigned a string representing the Shopify warehouse ID for any fulfillment locations that should be ignored by the app.
-	- *Note:* If an item has inventory listed in multiple locations, Shopify will occasionally assign a line item in an order to a fulfillment location that does not have inventory in stock. As this does not happen predictably or reliably, I could not account for it in the code, and is instead just something to be aware of and keep an eye out for.
-- **get-isa-example.js:** This module holds a simple object assigning the vendor of an item (as assigned in Shopify) to the trading partner's ISA ID (as assigned in Orderful). The general structure is 'Vendor':'ISAID', and can be extended to however many vendors are needed (though after a certain point, it may be useful to consider utilizing a dedicated database for this operation). 
-- **get-location-id-example.js:** Another simple connection module, this one will simply do the reverse of the above module; it returns the warehouse ID (as assigned by Shopify) for a given ISA ID (as assigned by Orderful). Similar to the above, it is simply an object with the ISA ID and the warehouse ID as key/value pairs. General structure is 'ISA ID':'Warehouse ID'. 
+- **filter-orders-example.js:** This module serves to separate orders into individual **850 Purchase Order** documents based on assigned fulfillment location IDs. Each line item is sorted into their different fulfillment orders, then each fulfillment order present is mapped to the correct vendor based on the assigned_location_id value. 
+- **Vendors:** This is not a file present in the repository, but rather a Google Datastore with a map of all vendors and their related information. Previously this was managed through multiple modules and maps. The Datastore used should be created in the same project that the app will be deployed to. 
 
 ----------
 

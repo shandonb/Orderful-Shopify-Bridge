@@ -21,3 +21,9 @@ node_modules/
 
 # Testing data and modules
 __tests__/
+
+# GitHub example files
+app_modules/filter-order-example.js
+app-example.yaml
+create-webhook.js
+readme.md

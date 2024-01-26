@@ -1,5 +1,5 @@
 const axios = require('axios');
-const getLocationId = require('./get-location-id.js');
+const { getVendorByIsaId } = require('./vendorUtilsDatabase.js');
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 const SHOPIFY_URL = process.env.SHOPIFY_URL;
 
@@ -63,7 +63,8 @@ async function postFulfillment(order) {
 // Main function, takes an incoming 856 document, processes, and posts the tracking information to the matching order on Shopify
 async function matchOrder(orderfulResponse, vendor) {   
     // TODO: Adjust the function to be iterative on the off chance someone tries to send multiple shipments in a single document
-    const locationID = getLocationId(vendor);
+    const vendorData = await getVendorByIsaId(vendor);
+    const locationID = vendorData.locationId;
     const orderIDNumber = orderfulResponse.message.transactionSets[0].HL_loop[1].purchaseOrderReference[0].purchaseOrderNumber;
     console.log('Location ID: ', locationID);
     const fulfillments = await fulfillmentOrders(orderfulResponse);

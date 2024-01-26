@@ -21,19 +21,26 @@ async function fetchBarcode(variantID) {
 async function productLoopConstructor(lineItem) {
     const barcode = await fetchBarcode(lineItem.variant_id);
 
+    let baselineItemData = {
+        quantity: lineItem.quantity.toString(),
+        unitOrBasisForMeasurementCode: "EA",
+        unitPrice: lineItem.price.toString(),
+        basisOfUnitPriceCode: "CP",
+        productServiceIDQualifier: "UP",
+        productServiceID: barcode ? barcode.toString() : "",
+        productServiceIDQualifier1: "VN",
+        productServiceID1: lineItem.sku.toString(),
+        productServiceIDQualifier2: "IN",
+        productServiceID2: lineItem.variant_id.toString()
+    };
+
+    if (!barcode) {
+        delete baselineItemData.productServiceIDQualifier;
+        delete baselineItemData.productServiceID;
+    }
+
     return {
-        baselineItemData: [{
-            quantity: lineItem.quantity.toString(),
-            unitOrBasisForMeasurementCode: "EA",
-            unitPrice: lineItem.price.toString(),
-            basisOfUnitPriceCode: "CP",
-            productServiceIDQualifier: "UP",
-            productServiceID: barcode ? barcode.toString() : "",
-            productServiceIDQualifier1: "VN",
-            productServiceID1: lineItem.sku.toString(),
-            productServiceIDQualifier2: "IN",
-            productServiceID2: lineItem.variant_id.toString()
-        }],
+        baselineItemData: [baselineItemData],
         PID_loop: [{
             productItemDescription: [{
                 itemDescriptionTypeCode: "F",
@@ -41,7 +48,7 @@ async function productLoopConstructor(lineItem) {
                 description: lineItem.name.toString()
             }]
         }]
-    };
+    }
 }
 
 module.exports = productLoopConstructor;
