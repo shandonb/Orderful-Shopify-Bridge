@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { getVendorByIsaId } = require('./vendorUtils.js');
+const { getVendorByIsaId } = require('./vendorUtilsDatabase.js');
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 const SHOPIFY_URL = process.env.SHOPIFY_URL;
 
@@ -49,7 +49,7 @@ const getInventoryId = async (sku, inventoryId = null) => {
 const postInventory = async (inventoryFeed) => {
 
     // Using location ID ensures that the inventory is added to the correct inventory location, rather than to the default location
-    const vendorData = getVendorByIsaId(inventoryFeed.sender.isaId);
+    const vendorData = await getVendorByIsaId(inventoryFeed.sender.isaId);
     const locationId = vendorData.locationId;
     
     // Here we iterate through the LIN_loops of the incoming document in case vendors are sending inventory for multiple items in one document
