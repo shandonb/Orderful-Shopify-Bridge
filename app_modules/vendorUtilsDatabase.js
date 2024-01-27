@@ -1,4 +1,4 @@
-const { Datastore } = require('@google-cloud/datastore');
+const { Datastore, PropertyFilter } = require('@google-cloud/datastore');
 
 /* This module is designed to match vendor data with a Google Datastore containing a map of the vendors and the data
     that the app will need to function properly. Basic setup for the Datastore is as follows:
@@ -20,7 +20,9 @@ const datastore = new Datastore({
 });
 
 async function getVendorByIsaId(isaId) {
-    const query = datastore.createQuery('Vendors').filter('isaId', '=', isaId);
+    const query = datastore
+        .createQuery('Vendors')
+        .filter(new PropertyFilter('isaId', '=', isaId));
     const [vendors] = await datastore.runQuery(query);
 
     if (vendors.length === 0) {
@@ -31,7 +33,9 @@ async function getVendorByIsaId(isaId) {
 }
 
 async function getVendorByLocationId(locationId) {
-    const query = datastore.createQuery('Vendors').filter('locationId', '=', locationId);
+    const query = datastore
+        .createQuery('Vendors')
+        .filter(new PropertyFilter('locationId', '=', locationId));
     const [vendors] = await datastore.runQuery(query);
 
     if (vendors.length === 0) {
@@ -42,7 +46,9 @@ async function getVendorByLocationId(locationId) {
 }
 
 async function getVendorByName(name) {
-    const query = datastore.createQuery('Vendors').filter('vendorName', '=', name);
+    const query = datastore
+        .createQuery('Vendors')
+        .filter(new PropertyFilter('vendorName', '=', name));
     const [vendors] = await datastore.runQuery(query);
 
     if (vendors.length === 0) {
